@@ -1,46 +1,58 @@
+"use client";
+
 import Icon from "@/components/icons/Icon";
+import { useState } from "react";
+import SlideOver from "@/components/slide-over/SlideOver";
 import React from "react";
+import About from "@/components/about/About";
+import { TEST } from "@/data/test";
+import Stats from "./components/stats/Stats";
+import Image from "next/image";
 
 export default function Profile() {
+  const [isOpen, setIsOpen] = useState(false);
+  const user = TEST;
+  const stats = {
+    film: user.credits.film.length || 0,
+    tv: user.credits.tv.length || 0,
+    commercial: user.credits.commercial.length || 0,
+  };
+
+  const openSheet = () => {
+    setIsOpen(true);
+  };
+
+  const closeSheet = () => {
+    setIsOpen(false);
+  };
+
   return (
     <div className="flex flex-col items-center justify-between">
       {/* Color background */}
       <div className="bg-blue-500 h-48 w-full relative flex flex-col items-center justify-center">
         {/* Avatar */}
-        <div className="bg-gray-300 h-32 w-32 rounded-full border-4 absolute -bottom-16 left-1/2 transform -translate-x-1/2 shadow-2xl"></div>
+        <div className="bg-gray-300 h-32 w-32 rounded-full border-4 absolute -bottom-16 left-1/2 transform -translate-x-1/2 shadow-2xl">
+          <Image src={user.avatar} alt="Avatar" layout="fill" />
+        </div>
       </div>
 
       {/* Name */}
       <div className="flex flex-col items-center justify-center mt-24 mb-8">
-        <h3 className="text-2xl font-bold">Name</h3>
+        <h3 className="text-2xl font-bold">{user.first_name}</h3>
         {/* Title */}
-        <h4 className="text-muted">Title</h4>
+        <h4 className="text-muted">{user.user_title}</h4>
       </div>
-      <div className="flex flex-row items-center justify-center mb-8">
-        {/* Film Credits #, Skills, or TV, Film, Commercial */}
-        <div className="flex flex-col items-center justify-center px-8">
-          <h3 className="text-2xl font-bold">12</h3>
-          <h4 className="text-slate-400">Film</h4>
-        </div>
-        <div className="bg-gray-300 h-12 w-1"></div>
-        {/* Vertical divider */}
-        <div className="flex flex-col items-center justify-center px-8">
-          <h3 className="text-2xl font-bold">12</h3>
-          <h4 className="text-slate-400">Skills</h4>
-        </div>
-        <div className="bg-gray-300 h-12 w-1"></div>
-        <div className="flex flex-col items-center justify-center px-8">
-          <h3 className="text-2xl font-bold">12</h3>
-          <h4 className="text-slate-400">TV</h4>
-        </div>
-      </div>
+      <Stats {...stats} />
       {/* Contact Button, Save Profile */}
       <div className="flex flex-row">
-        <button className="border-2 border-blue-500 h-12 w-32 rounded-md text-blue-500">
+        <button
+          className="border-2 border-blue-500 h-12 w-32 rounded-md text-blue-500"
+          onClick={openSheet}
+        >
           Contact
         </button>
         <button className="bg-blue-500 h-12 w-32 rounded-md text-white ml-4">
-          Save Profile
+          View About
         </button>
       </div>
       <div className="flex flex-row items-center justify-center my-8">
@@ -83,6 +95,9 @@ export default function Profile() {
           <div className="bg-gray-300 h-48 w-48 rounded-md"></div>
         </div>
       </div>
+      <SlideOver isOpen={isOpen} onClose={closeSheet}>
+        <About />
+      </SlideOver>
     </div>
   );
 }
