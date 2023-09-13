@@ -23,7 +23,7 @@ export default function Stats({
       <div className="bg-gray-300 h-12 w-1"></div>
       <div className="flex flex-col items-center justify-center px-8">
         <h3 className="text-2xl font-bold">{commercial}</h3>
-        <h4 className="text-slate-400">Commercial</h4>
+        <h4 className="text-slate-400">Comm</h4>
       </div>
     </div>
   );
