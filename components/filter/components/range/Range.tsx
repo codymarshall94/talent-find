@@ -16,7 +16,7 @@ export default function Range({
   ageRange,
 }: RangeProps) {
   return (
-    <div className="flex flex-col space-y-4 bg-gray-100 p-4 rounded-md w-96">
+    <div className="flex flex-col space-y-4 bg-gray-100 p-4 rounded-md w-full">
       <Slider
         min={min}
         max={max}
