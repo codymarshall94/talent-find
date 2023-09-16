@@ -20,7 +20,6 @@ interface Attributes {
   gender: string;
   ethnicity: string;
   age_range: string;
-  build: string;
   hair_color: string;
   eye_color: string;
   height: string;
