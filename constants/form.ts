@@ -166,12 +166,12 @@ const ageRange = [
 
 const ethnicity = [
   {
-    label: "Caucasion",
-    value: "caucasion",
+    label: "White / Caucasion",
+    value: "white_caucasion",
   },
   {
-    label: "African American",
-    value: "african_american",
+    label: "Black / African American",
+    value: "black_african_american",
   },
   {
     label: "Hispanic",
@@ -184,6 +184,14 @@ const ethnicity = [
   {
     label: "Native American",
     value: "native_american",
+  },
+  {
+    label: "Middle Eastern",
+    value: "middle_eastern",
+  },
+  {
+    label: "Pacific Islander",
+    value: "pacific_islander",
   },
   {
     label: "Other",
@@ -286,6 +294,37 @@ const license = [
   },
 ];
 
+const physique = [
+  {
+    label: "Average",
+    value: "average",
+  },
+  {
+    label: "Slim",
+    value: "slim",
+  },
+
+  {
+    label: "Athletic",
+    value: "athletic",
+  },
+  {
+    label: "Muscular",
+    value: "muscular",
+  },
+  {
+    label: "Curvy",
+    value: "curvy",
+  },
+  {
+    label: "Heavyset / Stocky",
+    value: "heavyset",
+  },
+  {
+    label: "Plus-Size",
+    value: "plus_size",
+  },
+];
 
 export {
   license,
@@ -297,4 +336,5 @@ export {
   hairColor,
   jobTypes,
   skillTypes,
+  physique,
 };
