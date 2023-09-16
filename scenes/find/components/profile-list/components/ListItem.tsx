@@ -13,7 +13,7 @@ export default function ListItem() {
         <Image src={user.avatar} alt="profile image" fill />
       </div>
       <div className="flex flex-col items-start justify-center ml-4">
-        <div className="flex flex-row  items-baseline justify-center ml-4">
+        <div className="flex flex-row  items-baseline justify-center">
           <h1 className="text-black font-bold text-md">
             {user.first_name} {user.last_name}
           </h1>
@@ -23,8 +23,8 @@ export default function ListItem() {
           />
           <p className="text-gray-500 text-sm ml-2">{user.location.country}</p>
         </div>
-        <div className="flex flex-row items-center justify-center ml-4">
-          <p>{user.attributes.height}</p>
+        <div className="flex flex-row items-center justify-center text-xs text-gray-500">
+          <p className="">{user.attributes.height}</p>
           <div className="w-px h-4 bg-gray-500 mx-2"></div>
           <p>{user.attributes.weight}</p>
           <div className="w-px h-4 bg-gray-500 mx-2"></div>

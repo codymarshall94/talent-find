@@ -32,7 +32,7 @@ export default function Navbar() {
   return (
     <nav className="w-full h-16 flex flex-row justify-between items-center px-4">
       <div className="flex flex-row items-center">
-        <h1 className="text-black font-bold text-xl">Stuntlink</h1>
+        <Link href="/" className="text-black font-bold text-xl">Stuntlink</Link>
       </div>
       {/* mobile menu */}
       <div

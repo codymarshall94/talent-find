@@ -54,6 +54,7 @@ export default function Filter() {
     e.preventDefault();
     const form = { ...filterForm, ageRange, heightRange };
     console.log(form);
+    setShowFilter(false);
   };
 
   const clearForm = (e: any) => {
