@@ -2,15 +2,21 @@
 
 import Icon from "@/components/icons/Icon";
 import { useState } from "react";
-import SlideOver from "@/components/slide-over/SlideOver";
+import SlideOver from "@/scenes/profile/components/slide-over/SlideOver";
 import React from "react";
-import About from "@/components/about/About";
+import About from "@/scenes/profile/components/about/About";
 import { TEST } from "@/data/test";
 import Stats from "./components/stats/Stats";
 import Image from "next/image";
+import Photo from "./components/photos/Photos";
+import Skills from "./components/skills/Skills";
+import Credits from "./components/credits/Credits";
+
+type Tab = "about" | "skills" | "credits";
 
 export default function Profile() {
   const [isOpen, setIsOpen] = useState(false);
+  const [tab, setTab] = useState<Tab>("about");
   const user = TEST;
   const stats = {
     film: user.credits.film.length || 0,
@@ -26,33 +32,39 @@ export default function Profile() {
     setIsOpen(false);
   };
 
+  const changeTab = (tab: Tab) => {
+    setTab(tab);
+  };
+
   return (
     <div className="flex flex-col items-center justify-between">
       {/* Color background */}
       <div className="bg-blue-500 h-48 w-full relative flex flex-col items-center justify-center">
         {/* Avatar */}
-        <div className="bg-gray-300 h-32 w-32 rounded-full border-4 absolute -bottom-16 left-1/2 transform -translate-x-1/2 shadow-2xl">
-          <Image src={user.avatar} alt="Avatar" layout="fill" />
+        <div className="bg-gray-300 h-32 w-32 rounded-full border-4 border-white absolute -bottom-16 left-1/2 transform -translate-x-1/2 shadow-2xl overflow-hidden">
+          <Image src={user.avatar} alt="Avatar" fill sizes="100%" priority />
         </div>
       </div>
 
       {/* Name */}
       <div className="flex flex-col items-center justify-center mt-24 mb-8">
-        <h3 className="text-2xl font-bold">{user.first_name}</h3>
+        <h3 className="text-2xl font-bold">
+          {user.first_name} {user.last_name}
+        </h3>
         {/* Title */}
         <h4 className="text-muted">{user.user_title}</h4>
       </div>
       <Stats {...stats} />
       {/* Contact Button, Save Profile */}
       <div className="flex flex-row">
-        <button
-          className="border-2 border-blue-500 h-12 w-32 rounded-md text-blue-500"
-          onClick={openSheet}
-        >
+        <button className="border-2 border-blue-500 h-12 w-32 rounded-md text-blue-500">
           Contact
         </button>
-        <button className="bg-blue-500 h-12 w-32 rounded-md text-white ml-4">
-          View About
+        <button
+          className="bg-blue-500 h-12 w-32 rounded-md text-white ml-4"
+          onClick={openSheet}
+        >
+          About
         </button>
       </div>
       <div className="flex flex-row items-center justify-center my-8">
@@ -78,25 +90,23 @@ export default function Profile() {
       {/* Photos */}
       <div className="flex flex-col items-center justify-center mb-8">
         <div className="text-2xl mb-4 w-full">
-          <h3 className="font-bold">Stunt Photos</h3>
+          <h3 className="font-bold">Photos</h3>
         </div>
-        <div className="grid grid-cols-4 gap-4">
-          <div className="bg-gray-300 h-48 w-48 rounded-md"></div>
-          <div className="bg-gray-300 h-48 w-48 rounded-md"></div>
-          <div className="bg-gray-300 h-48 w-48 rounded-md"></div>
-          <div className="bg-gray-300 h-48 w-48 rounded-md"></div>
-          <div className="bg-gray-300 h-48 w-48 rounded-md"></div>
-          <div className="bg-gray-300 h-48 w-48 rounded-md"></div>
-          <div className="bg-gray-300 h-48 w-48 rounded-md"></div>
-          <div className="bg-gray-300 h-48 w-48 rounded-md"></div>
-          <div className="bg-gray-300 h-48 w-48 rounded-md"></div>
-          <div className="bg-gray-300 h-48 w-48 rounded-md"></div>
-          <div className="bg-gray-300 h-48 w-48 rounded-md"></div>
-          <div className="bg-gray-300 h-48 w-48 rounded-md"></div>
+        <div className="grid grid-cols-3 md:grid-cols-4 gap-4">
+          {user.photos.map((photo, index) => (
+            <Photo photo={photo} key={index} />
+          ))}
         </div>
       </div>
-      <SlideOver isOpen={isOpen} onClose={closeSheet}>
-        <About />
+      <SlideOver
+        isOpen={isOpen}
+        onClose={closeSheet}
+        tab={tab}
+        changeTab={changeTab}
+      >
+        {tab === "about" && <About user={user} />}
+        {tab === "skills" && <Skills skills={user.skills} />}
+        {tab === "credits" && <Credits credits={user.credits} />}
       </SlideOver>
     </div>
   );
