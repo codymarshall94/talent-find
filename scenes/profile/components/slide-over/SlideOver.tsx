@@ -1,3 +1,5 @@
+import { faClose } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 
 const tabs = ["about", "skills", "credits"];
@@ -22,13 +24,8 @@ export default function SlideOver({
         isOpen ? "translate-x-0" : "translate-x-full"
       } transition-transform duration-300 ease-in-out`}
     >
-      <div className="flex justify-end items-center px-4 py-2 text-white">
-        <button
-          onClick={onClose}
-          className="text-black hover:text-gray-200 focus:outline-none"
-        >
-          Close
-        </button>
+      <div className="flex justify-end items-center px-4 py-2 cursor-pointer">
+        <FontAwesomeIcon icon={faClose} onClick={onClose} size="2x" />
       </div>
       <div className="flex flex-row justify-between px-4 py-2">
         {tabs.map((t) => (

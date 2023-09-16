@@ -14,8 +14,8 @@ export default function Find() {
   const [orientation, setOrientation] = React.useState<string>("grid");
 
   return (
-    <div className="flex flex-col items-center justify-center px-4">
-      <div className="w-full h-64 bg-gray-800 rounded-md"></div>
+    <div className="flex flex-col items-center justify-center px-4 pb-4">
+      <div className="w-full h-32 md:h-64 bg-gray-800 rounded-md"></div>
       <div className="w-full xl:w-1/3">
         <h1 className="text-2xl font-bold text-black mt-4 mb-8">
           Find Talent For Your Next Project

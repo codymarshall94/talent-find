@@ -92,7 +92,7 @@ export default function Profile() {
         <div className="text-2xl mb-4 w-full">
           <h3 className="font-bold">Photos</h3>
         </div>
-        <div className="grid grid-cols-3 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-3 md:grid-cols-4 md:gap-4">
           {user.photos.map((photo, index) => (
             <Photo photo={photo} key={index} />
           ))}
